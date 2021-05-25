@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
       range: new FormArray([
         new FormGroup({
           max: new FormControl(300),
+          min: new FormControl(100),
         }),
       ]),
     });
@@ -36,17 +37,13 @@ export class AppComponent implements OnInit {
     (this.Form.get('range') as FormArray).controls.splice(0, 1);
     if (value === 'min') {
       (this.Form.get('range') as FormArray).controls.push(
-        new FormGroup({
-          min: new FormControl(100),
-        })
+        new FormGroup({ max: new FormControl(3000), min: new FormControl(100) })
       );
       console.log((this.Form.get('range') as FormArray).controls[0].value);
     }
     if (value === 'max') {
       (this.Form.get('range') as FormArray).controls.push(
-        new FormGroup({
-          max: new FormControl(3000),
-        })
+        new FormGroup({ min: new FormControl(100), max: new FormControl(3000) })
       );
       console.log((this.Form.get('range') as FormArray).controls[0].value);
     }
